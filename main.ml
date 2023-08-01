@@ -59,3 +59,20 @@ let is_palindrome (lst : 'a list) : bool = lst = rev lst
 let () =
   assert (is_palindrome [ "x"; "a"; "m"; "a"; "x" ]);
   assert (not (is_palindrome [ "a"; "b" ]))
+
+(* Problem 08 - Eliminate Duplicates *)
+let rec compress (lst : 'a list) : 'a list =
+  let fst (lst : 'a list) : 'a option =
+    match lst with [] -> None | x :: _ -> Some x
+  in
+  match lst with
+  | [] -> []
+  | x :: rest when Some x = fst rest -> compress rest
+  | x :: rest -> x :: compress rest
+
+let () =
+  assert (
+    compress
+      [ "a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e" ]
+    = [ "a"; "b"; "c"; "a"; "d"; "e" ]);
+  assert (compress [] = [])
