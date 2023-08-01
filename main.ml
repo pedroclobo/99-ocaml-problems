@@ -86,3 +86,26 @@ let () =
     duplicate [ "a"; "b"; "c"; "c"; "d" ]
     = [ "a"; "a"; "b"; "b"; "c"; "c"; "c"; "c"; "d"; "d" ]);
   assert (duplicate [] = [])
+
+(* Problem 15 - Replicate the Elements of a List a Given Number of Times *)
+let rec replicate (lst : 'a list) (n : int) : 'a list =
+  let rec replicate_element (e : 'a) (n : int) =
+    match n with
+    | n when n <= 0 -> []
+    | 1 -> [ e ]
+    | _ -> e :: replicate_element e (n - 1)
+  in
+  match lst with
+  | [] -> []
+  | x :: rest -> (
+      match n with
+      | n when n <= 0 -> []
+      | _ -> replicate_element x n @ replicate rest n)
+
+let () =
+  assert (
+    replicate [ "a"; "b"; "c" ] 3
+    = [ "a"; "a"; "a"; "b"; "b"; "b"; "c"; "c"; "c" ]);
+  assert (replicate [ "a"; "b"; "c" ] 0 = []);
+  assert (replicate [] 1 = []);
+  assert (replicate [] 3 = [])
