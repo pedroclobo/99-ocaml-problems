@@ -41,3 +41,14 @@ let length (lst : 'a list) : int =
 let () =
   assert (length [ "a"; "b"; "c" ] = 3);
   assert (length [] = 0)
+
+(* Problem 05 - Reverse a List *)
+let rev (lst : 'a list) : 'a list =
+  let rec rev_aux (lst : 'a list) (res : 'a list) =
+    match lst with [] -> res | e :: rest -> rev_aux rest (e :: res)
+  in
+  rev_aux lst []
+
+let () =
+  assert (rev [ "a"; "b"; "c" ] = [ "c"; "b"; "a" ]);
+  assert (rev [] = [])
