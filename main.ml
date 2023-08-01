@@ -52,3 +52,10 @@ let rev (lst : 'a list) : 'a list =
 let () =
   assert (rev [ "a"; "b"; "c" ] = [ "c"; "b"; "a" ]);
   assert (rev [] = [])
+
+(* Problem 06 - Palindrome *)
+let is_palindrome (lst : 'a list) : bool = lst = rev lst
+
+let () =
+  assert (is_palindrome [ "x"; "a"; "m"; "a"; "x" ]);
+  assert (not (is_palindrome [ "a"; "b" ]))
