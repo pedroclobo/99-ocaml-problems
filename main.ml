@@ -76,3 +76,13 @@ let () =
       [ "a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e" ]
     = [ "a"; "b"; "c"; "a"; "d"; "e" ]);
   assert (compress [] = [])
+
+(* Problem 14 - Duplicate the Elements of a List *)
+let rec duplicate (lst : 'a list) : 'a list =
+  match lst with [] -> [] | x :: rest -> x :: x :: duplicate rest
+
+let () =
+  assert (
+    duplicate [ "a"; "b"; "c"; "c"; "d" ]
+    = [ "a"; "a"; "b"; "b"; "c"; "c"; "c"; "c"; "d"; "d" ]);
+  assert (duplicate [] = [])
