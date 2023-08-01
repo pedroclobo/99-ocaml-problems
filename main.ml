@@ -17,3 +17,16 @@ let () =
   assert (last_two [ "a"; "b"; "c"; "d" ] = Some ("c", "d"));
   assert (last_two [ "a" ] = None);
   assert (last_two [] = None)
+
+(* Problem 03 - N'th Element of a List *)
+let rec nth (lst : 'a list) (n : int) : 'a option =
+  match lst with
+  | [] -> None
+  | e :: rest -> (
+      match n with 1 -> Some e | n when n < 1 -> None | _ -> nth rest (n - 1))
+
+let () =
+  assert (nth [ "a"; "b"; "c"; "d" ] 1 = Some "a");
+  assert (nth [ 1; 2; 3 ] 3 = Some 3);
+  assert (nth [ "a"; "b"; "c"; "d" ] 0 = None);
+  assert (nth [] 1 = None)
