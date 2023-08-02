@@ -87,6 +87,22 @@ let modifiedEncode (lst : 'a list) : 'a rle list =
   in
   aux (encode lst) []
 
+(* Problem 12 - Decode a Run-Length Encoded List *)
+let decode (lst : 'a rle list) : 'a list =
+  let rec aux (lst : 'a rle list) (res : 'a list) =
+    let rec replicate (e : 'a) (n : int) =
+      match n with
+      | n when n <= 0 -> []
+      | 1 -> [ e ]
+      | _ -> e :: replicate e (n - 1)
+    in
+    match lst with
+    | [] -> res
+    | One x :: rest -> aux rest (res @ [ x ])
+    | Many (n, x) :: rest -> aux rest (res @ replicate x n)
+  in
+  aux lst []
+
 (* Problem 14 - Duplicate the Elements of a List *)
 let rec duplicate (lst : 'a list) : 'a list =
   match lst with [] -> [] | x :: rest -> x :: x :: duplicate rest

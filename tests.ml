@@ -101,6 +101,21 @@ let () =
       ]);
   assert (modifiedEncode [] = [])
 
+(* Problem 12 - Decode a Run-Length Encoded List *)
+let () =
+  assert (
+    decode
+      [
+        Many (4, "a");
+        One "b";
+        Many (2, "c");
+        Many (2, "a");
+        One "d";
+        Many (4, "e");
+      ]
+    = [ "a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e" ]);
+  assert (decode [] = [])
+
 (* Problem 14 - Duplicate the Elements of a List *)
 let () =
   assert (
