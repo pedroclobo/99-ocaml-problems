@@ -64,6 +64,16 @@ let pack (lst : 'a list) : 'a list list =
   in
   aux lst [] []
 
+(* Problem 10 - Run-Length Encoding *)
+let encode (lst : 'a list) : (int * 'a) list =
+  let rec map f lst =
+    match lst with [] -> [] | x :: rest -> f x :: map f rest
+  in
+  map
+    (fun l ->
+      (length l, match last l with None -> failwith "Empty list" | Some x -> x))
+    (pack lst)
+
 (* Problem 14 - Duplicate the Elements of a List *)
 let rec duplicate (lst : 'a list) : 'a list =
   match lst with [] -> [] | x :: rest -> x :: x :: duplicate rest

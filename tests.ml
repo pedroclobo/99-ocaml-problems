@@ -78,6 +78,14 @@ let () =
       ]);
   assert (pack [] = [])
 
+(* Problem 10 - Run-Length Encoding *)
+let () =
+  assert (
+    encode
+      [ "a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e" ]
+    = [ (4, "a"); (1, "b"); (2, "c"); (2, "a"); (1, "d"); (4, "e") ]);
+  assert (encode [] = [])
+
 (* Problem 14 - Duplicate the Elements of a List *)
 let () =
   assert (
