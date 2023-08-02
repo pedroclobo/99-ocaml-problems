@@ -10,7 +10,7 @@ problems](https://ocaml.org/problems). Here are my solutions!
 - [x] [04 - Length of a List](https://ocaml.org/problems#4)
 - [x] [05 - Reverse a List](https://ocaml.org/problems#5)
 - [x] [06 - Palindrome](https://ocaml.org/problems#6)
-- [ ] [07 - Flatten a List](https://ocaml.org/problems#7)
+- [x] [07 - Flatten a List](https://ocaml.org/problems#7)
 - [x] [08 - Eliminate Duplicates](https://ocaml.org/problems#8)
 - [ ] [09 - Pack Consecutive Duplicates](https://ocaml.org/problems#9)
 - [ ] [10 - Run-Length Encoding](https://ocaml.org/problems#10)

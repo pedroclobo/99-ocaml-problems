@@ -60,6 +60,20 @@ let () =
   assert (is_palindrome [ "x"; "a"; "m"; "a"; "x" ]);
   assert (not (is_palindrome [ "a"; "b" ]))
 
+(* Problem 07 - Flatten a List *)
+type 'a node = One of 'a | Many of 'a node list
+
+let rec flatten (lst : 'a node list) : 'a list =
+  match lst with
+  | [] -> []
+  | One x :: rest -> x :: flatten rest
+  | Many x :: rest -> flatten x @ flatten rest
+
+let () =
+  assert (
+    flatten [ One "a"; Many [ One "b"; Many [ One "c"; One "d" ]; One "e" ] ]
+    = [ "a"; "b"; "c"; "d"; "e" ])
+
 (* Problem 08 - Eliminate Duplicates *)
 let rec compress (lst : 'a list) : 'a list =
   let fst (lst : 'a list) : 'a option =
