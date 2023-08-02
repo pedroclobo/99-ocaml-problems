@@ -47,6 +47,37 @@ let () =
     = [ "a"; "b"; "c"; "a"; "d"; "e" ]);
   assert (compress [] = [])
 
+(* Problem 09 - Pack Consecutive Duplicates *)
+let () =
+  assert (
+    pack
+      [
+        "a";
+        "a";
+        "a";
+        "a";
+        "b";
+        "c";
+        "c";
+        "a";
+        "a";
+        "d";
+        "d";
+        "e";
+        "e";
+        "e";
+        "e";
+      ]
+    = [
+        [ "a"; "a"; "a"; "a" ];
+        [ "b" ];
+        [ "c"; "c" ];
+        [ "a"; "a" ];
+        [ "d"; "d" ];
+        [ "e"; "e"; "e"; "e" ];
+      ]);
+  assert (pack [] = [])
+
 (* Problem 14 - Duplicate the Elements of a List *)
 let () =
   assert (

@@ -12,7 +12,7 @@ problems](https://ocaml.org/problems). Here are my solutions!
 - [x] [06 - Palindrome](https://ocaml.org/problems#6)
 - [x] [07 - Flatten a List](https://ocaml.org/problems#7)
 - [x] [08 - Eliminate Duplicates](https://ocaml.org/problems#8)
-- [ ] [09 - Pack Consecutive Duplicates](https://ocaml.org/problems#9)
+- [x] [09 - Pack Consecutive Duplicates](https://ocaml.org/problems#9)
 - [ ] [10 - Run-Length Encoding](https://ocaml.org/problems#10)
 - [ ] [11 - Modified Run-Length Encoding](https://ocaml.org/problems#11)
 - [ ] [12 - Decode a Run-Length Encoded List](https://ocaml.org/problems#12)

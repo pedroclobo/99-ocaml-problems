@@ -52,6 +52,18 @@ let rec compress (lst : 'a list) : 'a list =
   | x :: rest when Some x = fst rest -> compress rest
   | x :: rest -> x :: compress rest
 
+(* Problem 09 - Pack Consecutive Duplicates *)
+let pack (lst : 'a list) : 'a list list =
+  let rec aux (lst : 'a list) (res : 'a list list) (curr : 'a list) =
+    match (lst, curr) with
+    | [], [] -> res
+    | [], _ -> res @ [ curr ]
+    | x :: rest, [] -> aux rest res (x :: curr)
+    | x :: rest, c :: _ when x = c -> aux rest res (x :: curr)
+    | x :: rest, _ -> aux rest (res @ [ curr ]) [ x ]
+  in
+  aux lst [] []
+
 (* Problem 14 - Duplicate the Elements of a List *)
 let rec duplicate (lst : 'a list) : 'a list =
   match lst with [] -> [] | x :: rest -> x :: x :: duplicate rest
