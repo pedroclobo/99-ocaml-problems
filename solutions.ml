@@ -74,6 +74,19 @@ let encode (lst : 'a list) : (int * 'a) list =
       (length l, match last l with None -> failwith "Empty list" | Some x -> x))
     (pack lst)
 
+(* Problem 11 - Modified Run-Length Encoding *)
+type 'a rle = One of 'a | Many of int * 'a
+
+let modifiedEncode (lst : 'a list) : 'a rle list =
+  let rec aux (lst : (int * 'a) list) (res : 'a rle list) =
+    match lst with
+    | [] -> res
+    | (n, x) :: rest ->
+        if n = 1 then aux rest (res @ [ One x ])
+        else aux rest (res @ [ Many (n, x) ])
+  in
+  aux (encode lst) []
+
 (* Problem 14 - Duplicate the Elements of a List *)
 let rec duplicate (lst : 'a list) : 'a list =
   match lst with [] -> [] | x :: rest -> x :: x :: duplicate rest

@@ -86,6 +86,21 @@ let () =
     = [ (4, "a"); (1, "b"); (2, "c"); (2, "a"); (1, "d"); (4, "e") ]);
   assert (encode [] = [])
 
+(* Problem 11 - Modified Run-Length Encoding *)
+let () =
+  assert (
+    modifiedEncode
+      [ "a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e" ]
+    = [
+        Many (4, "a");
+        One "b";
+        Many (2, "c");
+        Many (2, "a");
+        One "d";
+        Many (4, "e");
+      ]);
+  assert (modifiedEncode [] = [])
+
 (* Problem 14 - Duplicate the Elements of a List *)
 let () =
   assert (

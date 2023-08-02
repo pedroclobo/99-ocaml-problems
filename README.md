@@ -14,7 +14,7 @@ problems](https://ocaml.org/problems). Here are my solutions!
 - [x] [08 - Eliminate Duplicates](https://ocaml.org/problems#8)
 - [x] [09 - Pack Consecutive Duplicates](https://ocaml.org/problems#9)
 - [x] [10 - Run-Length Encoding](https://ocaml.org/problems#10)
-- [ ] [11 - Modified Run-Length Encoding](https://ocaml.org/problems#11)
+- [x] [11 - Modified Run-Length Encoding](https://ocaml.org/problems#11)
 - [ ] [12 - Decode a Run-Length Encoded List](https://ocaml.org/problems#12)
 - [ ] [13 - Run-Length Encoding of a List (Direct Solution)](https://ocaml.org/problems#13)
 - [x] [14 - Duplicate the Elements of a List](https://ocaml.org/problems#14)
