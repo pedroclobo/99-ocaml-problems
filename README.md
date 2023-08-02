@@ -103,7 +103,13 @@ problems](https://ocaml.org/problems). Here are my solutions!
 - [ ] [99 - Crossword Puzzle](https://ocaml.org/problems#99)
 
 ## Quick Start
+To try out the solutions:
+```bash
+$ ocaml tests.ml
+```
+
 To test all solutions:
 ```bash
-$ ocaml main.ml
+$ ocaml
+# #use "./solutions.ml"
 ```
