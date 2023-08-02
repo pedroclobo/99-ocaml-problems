@@ -123,3 +123,23 @@ let () =
   assert (replicate [ "a"; "b"; "c" ] 0 = []);
   assert (replicate [] 1 = []);
   assert (replicate [] 3 = [])
+
+(* Problem 16 - Drop Every N'th Element From a List *)
+let drop (lst : 'a list) (n : int) : 'a list =
+  let rec aux (lst : 'a list) (n : int) (i : int) (res : 'a list) =
+    if n <= 0 then []
+    else
+      match (lst, i) with
+      | [], _ -> res
+      | _ :: rest, 1 -> aux rest n n res
+      | x :: rest, _ -> aux rest n (i - 1) (res @ [ x ])
+  in
+  aux lst n n []
+
+let () =
+  assert (
+    drop [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"; "i"; "j" ] 3
+    = [ "a"; "b"; "d"; "e"; "g"; "h"; "j" ]);
+  assert (drop [ 1; 2; 3 ] 0 = []);
+  assert (drop [ 1; 2; 3 ] 4 = [ 1; 2; 3 ]);
+  assert (drop [] 1 = [])
