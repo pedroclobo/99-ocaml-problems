@@ -16,7 +16,7 @@ problems](https://ocaml.org/problems). Here are my solutions!
 - [x] [10 - Run-Length Encoding](https://ocaml.org/problems#10)
 - [x] [11 - Modified Run-Length Encoding](https://ocaml.org/problems#11)
 - [x] [12 - Decode a Run-Length Encoded List](https://ocaml.org/problems#12)
-- [ ] [13 - Run-Length Encoding of a List (Direct Solution)](https://ocaml.org/problems#13)
+- [x] [13 - Run-Length Encoding of a List (Direct Solution)](https://ocaml.org/problems#13)
 - [x] [14 - Duplicate the Elements of a List](https://ocaml.org/problems#14)
 - [x] [15 - Replicate the Elements of a List a Given Number of Times](https://ocaml.org/problems#15)
 - [x] [16 - Drop Every N'th Element From a List](https://ocaml.org/problems#16)

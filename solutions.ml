@@ -103,6 +103,22 @@ let decode (lst : 'a rle list) : 'a list =
   in
   aux lst []
 
+(* Problem 13 - Run-Length Encoding of a List (Direct Solution) *)
+let directEncode (lst : 'a list) : 'a rle list =
+  let rec aux (lst : 'a list) (res : 'a rle list) (el : 'a option) (acc : int) =
+    let count (x : 'a) (count : int) : 'a rle =
+      if count = 1 then One x else Many (count, x)
+    in
+    match (lst, el) with
+    | [], None -> res
+    | [], Some v -> res @ [ count v acc ]
+    | x :: rest, None -> aux rest res (Some x) (acc + 1)
+    | x :: rest, Some v when v = x -> aux rest res (Some x) (acc + 1)
+    | x :: rest, Some v -> aux rest (res @ [ count v acc ]) (Some x) 1
+  in
+
+  aux lst [] None 0
+
 (* Problem 14 - Duplicate the Elements of a List *)
 let rec duplicate (lst : 'a list) : 'a list =
   match lst with [] -> [] | x :: rest -> x :: x :: duplicate rest

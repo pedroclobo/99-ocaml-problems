@@ -116,6 +116,21 @@ let () =
     = [ "a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e" ]);
   assert (decode [] = [])
 
+(* Problem 13 - Run-Length Encoding of a List (Direct Solution) *)
+let () =
+  assert (
+    directEncode
+      [ "a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e" ]
+    = [
+        Many (4, "a");
+        One "b";
+        Many (2, "c");
+        Many (2, "a");
+        One "d";
+        Many (4, "e");
+      ]);
+  assert (directEncode [] = [])
+
 (* Problem 14 - Duplicate the Elements of a List *)
 let () =
   assert (
