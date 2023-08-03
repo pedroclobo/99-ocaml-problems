@@ -164,3 +164,9 @@ let () =
   assert (split [ "a"; "b"; "c"; "d" ] 5 = ([ "a"; "b"; "c"; "d" ], []));
   assert (split [ "a"; "b"; "c"; "d" ] 0 = ([], [ "a"; "b"; "c"; "d" ]));
   assert (split [] 1 = ([], []))
+
+(* Problem 18 - Extract a Slice From a List *)
+let () =
+  assert (
+    slice [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"; "i"; "j" ] 2 6
+    = [ "c"; "d"; "e"; "f"; "g" ])

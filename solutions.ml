@@ -164,3 +164,15 @@ let split (lst : 'a list) (len : int) : 'a list * 'a list =
           aux rest len (a @ [ x ], b) (i + 1)
   in
   aux lst len ([], []) 1
+
+(* Problem 18 - Extract a Slice From a List *)
+let slice (lst : 'a list) (i : int) (k : int) : 'a list =
+  let rec aux (lst : 'a list) (i : int) (k : int) (res : 'a list) (count : int)
+      =
+    match lst with
+    | [] -> res
+    | x :: rest ->
+        if i <= count && count <= k then aux rest i k (res @ [ x ]) (count + 1)
+        else aux rest i k res (count + 1)
+  in
+  aux lst i k [] 0
