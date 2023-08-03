@@ -20,7 +20,7 @@ problems](https://ocaml.org/problems). Here are my solutions!
 - [x] [14 - Duplicate the Elements of a List](https://ocaml.org/problems#14)
 - [x] [15 - Replicate the Elements of a List a Given Number of Times](https://ocaml.org/problems#15)
 - [x] [16 - Drop Every N'th Element From a List](https://ocaml.org/problems#16)
-- [ ] [17 - Split a List Into Two Parts; The Length of the First Part Is Given](https://ocaml.org/problems#17)
+- [x] [17 - Split a List Into Two Parts; The Length of the First Part Is Given](https://ocaml.org/problems#17)
 - [ ] [18 - Extract a Slice From a List](https://ocaml.org/problems#18)
 - [ ] [19 - Rotate a List N Places to the Left](https://ocaml.org/problems#19)
 - [ ] [20 - Remove the K'th Element From a List](https://ocaml.org/problems#20)

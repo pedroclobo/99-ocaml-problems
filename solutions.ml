@@ -149,3 +149,18 @@ let drop (lst : 'a list) (n : int) : 'a list =
       | x :: rest, _ -> aux rest n (i - 1) (res @ [ x ])
   in
   aux lst n n []
+
+(* Problem 17 - Split a List Into Two Parts; The Length of the First Part Is Given *)
+let split (lst : 'a list) (len : int) : 'a list * 'a list =
+  let rec aux (lst : 'a list) (len : int) (res : 'a list * 'a list) (i : int) =
+    match lst with
+    | [] -> res
+    | x :: rest ->
+        if i > len then
+          let a, b = res in
+          aux rest len (a, b @ [ x ]) (i + 1)
+        else
+          let a, b = res in
+          aux rest len (a @ [ x ], b) (i + 1)
+  in
+  aux lst len ([], []) 1

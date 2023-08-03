@@ -155,3 +155,12 @@ let () =
   assert (drop [ 1; 2; 3 ] 0 = []);
   assert (drop [ 1; 2; 3 ] 4 = [ 1; 2; 3 ]);
   assert (drop [] 1 = [])
+
+(* Problem 17 - Split a List Into Two Parts; The Length of the First Part Is Given *)
+let () =
+  assert (
+    split [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"; "i"; "j" ] 3
+    = ([ "a"; "b"; "c" ], [ "d"; "e"; "f"; "g"; "h"; "i"; "j" ]));
+  assert (split [ "a"; "b"; "c"; "d" ] 5 = ([ "a"; "b"; "c"; "d" ], []));
+  assert (split [ "a"; "b"; "c"; "d" ] 0 = ([], [ "a"; "b"; "c"; "d" ]));
+  assert (split [] 1 = ([], []))
