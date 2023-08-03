@@ -176,3 +176,10 @@ let () =
   assert (
     rotate [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h" ] 3
     = [ "d"; "e"; "f"; "g"; "h"; "a"; "b"; "c" ])
+
+(* Problem 20 - Remove the K'th Element From a List *)
+let () =
+  assert (remove_at 1 [ "a"; "b"; "c"; "d" ] = [ "a"; "c"; "d" ]);
+  assert (remove_at 5 [ "a"; "b"; "c"; "d" ] = [ "a"; "b"; "c"; "d" ]);
+  assert (remove_at (-1) [ "a"; "b"; "c"; "d" ] = [ "a"; "b"; "c"; "d" ]);
+  assert (remove_at 0 [] = [])

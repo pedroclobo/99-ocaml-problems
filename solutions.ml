@@ -184,3 +184,13 @@ let rotate (lst : 'a list) (n : int) : 'a list =
     else match lst with [] -> [] | x :: rest -> aux (rest @ [ x ]) (i + 1)
   in
   aux lst 0
+
+(* Problem 20 - Remove the K'th Element From a List *)
+let remove_at (k : int) (lst : 'a list) : 'a list =
+  let rec aux (i : int) (lst : 'a list) (res : 'a list) : 'a list =
+    match lst with
+    | [] -> res
+    | x :: rest ->
+        if i = k then aux (i + 1) rest res else aux (i + 1) rest (res @ [ x ])
+  in
+  aux 0 lst []
