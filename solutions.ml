@@ -194,3 +194,14 @@ let remove_at (k : int) (lst : 'a list) : 'a list =
         if i = k then aux (i + 1) rest res else aux (i + 1) rest (res @ [ x ])
   in
   aux 0 lst []
+
+(* Problem 21 - Insert an Element at a Given Position Into a List *)
+let insert_at (e : 'a) (n : int) (lst : 'a list) : 'a list =
+  let rec aux (i : int) (lst : 'a list) (res : 'a list) =
+    match lst with
+    | [] -> if i <= n then res @ [ e ] else res
+    | x :: rest ->
+        let res = if i = n then res @ [ e ] @ [ x ] else res @ [ x ] in
+        aux (i + 1) rest res
+  in
+  aux 0 lst []

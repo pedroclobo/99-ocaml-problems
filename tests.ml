@@ -183,3 +183,10 @@ let () =
   assert (remove_at 5 [ "a"; "b"; "c"; "d" ] = [ "a"; "b"; "c"; "d" ]);
   assert (remove_at (-1) [ "a"; "b"; "c"; "d" ] = [ "a"; "b"; "c"; "d" ]);
   assert (remove_at 0 [] = [])
+
+(* Problem 21 - Insert an Element at a Given Position Into a List *)
+let () =
+  assert (insert_at "z" 1 [ "a"; "b"; "c"; "d" ] = [ "a"; "z"; "b"; "c"; "d" ]);
+  assert (insert_at "z" 4 [ "a"; "b"; "c"; "d" ] = [ "a"; "b"; "c"; "d"; "z" ]);
+  assert (insert_at "z" 9 [ "a"; "b"; "c"; "d" ] = [ "a"; "b"; "c"; "d"; "z" ]);
+  assert (insert_at "z" 0 [] = [ "z" ])
