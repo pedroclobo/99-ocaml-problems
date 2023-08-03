@@ -170,3 +170,9 @@ let () =
   assert (
     slice [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"; "i"; "j" ] 2 6
     = [ "c"; "d"; "e"; "f"; "g" ])
+
+(* Problem 19 - Rotate a List N Places to the Left *)
+let () =
+  assert (
+    rotate [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h" ] 3
+    = [ "d"; "e"; "f"; "g"; "h"; "a"; "b"; "c" ])

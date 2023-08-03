@@ -176,3 +176,11 @@ let slice (lst : 'a list) (i : int) (k : int) : 'a list =
         else aux rest i k res (count + 1)
   in
   aux lst i k [] 0
+
+(* Problem 19 - Rotate a List N Places to the Left *)
+let rotate (lst : 'a list) (n : int) : 'a list =
+  let rec aux (lst : 'a list) (i : int) =
+    if i >= n then lst
+    else match lst with [] -> [] | x :: rest -> aux (rest @ [ x ]) (i + 1)
+  in
+  aux lst 0
