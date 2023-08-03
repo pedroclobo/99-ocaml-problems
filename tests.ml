@@ -190,3 +190,9 @@ let () =
   assert (insert_at "z" 4 [ "a"; "b"; "c"; "d" ] = [ "a"; "b"; "c"; "d"; "z" ]);
   assert (insert_at "z" 9 [ "a"; "b"; "c"; "d" ] = [ "a"; "b"; "c"; "d"; "z" ]);
   assert (insert_at "z" 0 [] = [ "z" ])
+
+(* Problem 22 - Create a List Containing All Integers Within a Given Range *)
+let () =
+  assert (range 4 9 = [ 4; 5; 6; 7; 8; 9 ]);
+  assert (range 9 4 = [ 9; 8; 7; 6; 5; 4 ]);
+  assert (range 1 1 = [ 1 ])

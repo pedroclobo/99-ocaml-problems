@@ -25,7 +25,7 @@ problems](https://ocaml.org/problems). Here are my solutions!
 - [x] [19 - Rotate a List N Places to the Left](https://ocaml.org/problems#19)
 - [x] [20 - Remove the K'th Element From a List](https://ocaml.org/problems#20)
 - [x] [21 - Insert an Element at a Given Position Into a List](https://ocaml.org/problems#21)
-- [ ] [22 - Create a List Containing All Integers Within a Given Range](https://ocaml.org/problems#22)
+- [x] [22 - Create a List Containing All Integers Within a Given Range](https://ocaml.org/problems#22)
 - [ ] [23 - Extract a Given Number of Randomly Selected Elements From a List](https://ocaml.org/problems#23)
 - [ ] [24 - Lotto: Draw N Different Random Numbers From the Set 1..M](https://ocaml.org/problems#24)
 - [ ] [25 - Generate a Random Permutation of the Elements of a List](https://ocaml.org/problems#25)

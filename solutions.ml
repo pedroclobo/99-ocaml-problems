@@ -208,3 +208,12 @@ let insert_at (e : 'a) (n : int) (lst : 'a list) : 'a list =
         aux (i + 1) tail res
   in
   aux 0 lst []
+
+(* Problem 22 - Create a List Containing All Integers Within a Given Range *)
+let range (i : int) (k : int) : int list =
+  let rec aux (res : int list) (n : int) =
+    if n > max i k || n < min i k then res
+    else if i > k then aux (res @ [ n ]) (n - 1)
+    else aux (res @ [ n ]) (n + 1)
+  in
+  aux [] i
