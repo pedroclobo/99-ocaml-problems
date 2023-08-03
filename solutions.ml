@@ -1,34 +1,37 @@
 (* Problem 01 - Tail of a List *)
 let rec last (lst : 'a list) : 'a option =
-  match lst with [] -> None | [ e ] -> Some e | _ :: rest -> last rest
+  match lst with [] -> None | [ x ] -> Some x | _ :: tail -> last tail
 
 (* Problem 02 - Last Two Elements of a List *)
 let rec last_two (lst : 'a list) : ('a * 'a) option =
   match lst with
   | [ x; y ] -> Some (x, y)
-  | _ :: rest -> last_two rest
+  | _ :: tail -> last_two tail
   | _ -> None
 
 (* Problem 03 - N'th Element of a List *)
 let rec nth (lst : 'a list) (n : int) : 'a option =
   match lst with
   | [] -> None
-  | e :: rest -> (
-      match n with 1 -> Some e | n when n < 1 -> None | _ -> nth rest (n - 1))
+  | head :: tail -> (
+      match n with
+      | 1 -> Some head
+      | n when n < 1 -> None
+      | _ -> nth tail (n - 1))
 
 (* Problem 04 - Length of a List *)
 let length (lst : 'a list) : int =
-  let rec length_aux (lst : 'a list) (n : int) =
-    match lst with [] -> n | _ :: rest -> length_aux rest (n + 1)
+  let rec aux (lst : 'a list) (n : int) =
+    match lst with [] -> n | _ :: tail -> aux tail (n + 1)
   in
-  length_aux lst 0
+  aux lst 0
 
 (* Problem 05 - Reverse a List *)
 let rev (lst : 'a list) : 'a list =
-  let rec rev_aux (lst : 'a list) (res : 'a list) =
-    match lst with [] -> res | e :: rest -> rev_aux rest (e :: res)
+  let rec aux (lst : 'a list) (res : 'a list) =
+    match lst with [] -> res | head :: tail -> aux tail (head :: res)
   in
-  rev_aux lst []
+  aux lst []
 
 (* Problem 06 - Palindrome *)
 let is_palindrome (lst : 'a list) : bool = lst = rev lst
@@ -39,18 +42,18 @@ type 'a node = One of 'a | Many of 'a node list
 let rec flatten (lst : 'a node list) : 'a list =
   match lst with
   | [] -> []
-  | One x :: rest -> x :: flatten rest
-  | Many x :: rest -> flatten x @ flatten rest
+  | One x :: tail -> x :: flatten tail
+  | Many x :: tail -> flatten x @ flatten tail
 
 (* Problem 08 - Eliminate Duplicates *)
 let rec compress (lst : 'a list) : 'a list =
   let fst (lst : 'a list) : 'a option =
-    match lst with [] -> None | x :: _ -> Some x
+    match lst with [] -> None | head :: _ -> Some head
   in
   match lst with
   | [] -> []
-  | x :: rest when Some x = fst rest -> compress rest
-  | x :: rest -> x :: compress rest
+  | head :: tail when Some head = fst tail -> compress tail
+  | head :: tail -> head :: compress tail
 
 (* Problem 09 - Pack Consecutive Duplicates *)
 let pack (lst : 'a list) : 'a list list =
@@ -58,16 +61,16 @@ let pack (lst : 'a list) : 'a list list =
     match (lst, curr) with
     | [], [] -> res
     | [], _ -> res @ [ curr ]
-    | x :: rest, [] -> aux rest res (x :: curr)
-    | x :: rest, c :: _ when x = c -> aux rest res (x :: curr)
-    | x :: rest, _ -> aux rest (res @ [ curr ]) [ x ]
+    | head :: tail, [] -> aux tail res (head :: curr)
+    | head :: tail, c :: _ when head = c -> aux tail res (head :: curr)
+    | head :: tail, _ -> aux tail (res @ [ curr ]) [ head ]
   in
   aux lst [] []
 
 (* Problem 10 - Run-Length Encoding *)
 let encode (lst : 'a list) : (int * 'a) list =
   let rec map f lst =
-    match lst with [] -> [] | x :: rest -> f x :: map f rest
+    match lst with [] -> [] | head :: tail -> f head :: map f tail
   in
   map
     (fun l ->
@@ -81,9 +84,9 @@ let modifiedEncode (lst : 'a list) : 'a rle list =
   let rec aux (lst : (int * 'a) list) (res : 'a rle list) =
     match lst with
     | [] -> res
-    | (n, x) :: rest ->
-        if n = 1 then aux rest (res @ [ One x ])
-        else aux rest (res @ [ Many (n, x) ])
+    | (n, x) :: tail ->
+        let res = if n = 1 then res @ [ One x ] else res @ [ Many (n, x) ] in
+        aux tail res
   in
   aux (encode lst) []
 
@@ -98,8 +101,8 @@ let decode (lst : 'a rle list) : 'a list =
     in
     match lst with
     | [] -> res
-    | One x :: rest -> aux rest (res @ [ x ])
-    | Many (n, x) :: rest -> aux rest (res @ replicate x n)
+    | One x :: tail -> aux tail (res @ [ x ])
+    | Many (n, x) :: tail -> aux tail (res @ replicate x n)
   in
   aux lst []
 
@@ -112,16 +115,16 @@ let directEncode (lst : 'a list) : 'a rle list =
     match (lst, el) with
     | [], None -> res
     | [], Some v -> res @ [ count v acc ]
-    | x :: rest, None -> aux rest res (Some x) (acc + 1)
-    | x :: rest, Some v when v = x -> aux rest res (Some x) (acc + 1)
-    | x :: rest, Some v -> aux rest (res @ [ count v acc ]) (Some x) 1
+    | head :: tail, None -> aux tail res (Some head) (acc + 1)
+    | head :: tail, Some v when v = head -> aux tail res (Some head) (acc + 1)
+    | head :: tail, Some v -> aux tail (res @ [ count v acc ]) (Some head) 1
   in
 
   aux lst [] None 0
 
 (* Problem 14 - Duplicate the Elements of a List *)
 let rec duplicate (lst : 'a list) : 'a list =
-  match lst with [] -> [] | x :: rest -> x :: x :: duplicate rest
+  match lst with [] -> [] | head :: tail -> head :: head :: duplicate tail
 
 (* Problem 15 - Replicate the Elements of a List a Given Number of Times *)
 let rec replicate (lst : 'a list) (n : int) : 'a list =
@@ -133,55 +136,55 @@ let rec replicate (lst : 'a list) (n : int) : 'a list =
   in
   match lst with
   | [] -> []
-  | x :: rest -> (
+  | head :: tail -> (
       match n with
       | n when n <= 0 -> []
-      | _ -> replicate_element x n @ replicate rest n)
+      | _ -> replicate_element head n @ replicate tail n)
 
 (* Problem 16 - Drop Every N'th Element From a List *)
 let drop (lst : 'a list) (n : int) : 'a list =
-  let rec aux (lst : 'a list) (n : int) (i : int) (res : 'a list) =
+  let rec aux (lst : 'a list) (i : int) (res : 'a list) =
     if n <= 0 then []
     else
       match (lst, i) with
       | [], _ -> res
-      | _ :: rest, 1 -> aux rest n n res
-      | x :: rest, _ -> aux rest n (i - 1) (res @ [ x ])
+      | _ :: tail, 1 -> aux tail n res
+      | head :: tail, _ -> aux tail (i - 1) (res @ [ head ])
   in
-  aux lst n n []
+  aux lst n []
 
 (* Problem 17 - Split a List Into Two Parts; The Length of the First Part Is Given *)
 let split (lst : 'a list) (len : int) : 'a list * 'a list =
-  let rec aux (lst : 'a list) (len : int) (res : 'a list * 'a list) (i : int) =
+  let rec aux (lst : 'a list) (res : 'a list * 'a list) (i : int) =
     match lst with
     | [] -> res
-    | x :: rest ->
+    | head :: tail ->
         if i > len then
           let a, b = res in
-          aux rest len (a, b @ [ x ]) (i + 1)
+          aux tail (a, b @ [ head ]) (i + 1)
         else
           let a, b = res in
-          aux rest len (a @ [ x ], b) (i + 1)
+          aux tail (a @ [ head ], b) (i + 1)
   in
-  aux lst len ([], []) 1
+  aux lst ([], []) 1
 
 (* Problem 18 - Extract a Slice From a List *)
 let slice (lst : 'a list) (i : int) (k : int) : 'a list =
-  let rec aux (lst : 'a list) (i : int) (k : int) (res : 'a list) (count : int)
-      =
+  let rec aux (lst : 'a list) (res : 'a list) (count : int) =
     match lst with
     | [] -> res
-    | x :: rest ->
-        if i <= count && count <= k then aux rest i k (res @ [ x ]) (count + 1)
-        else aux rest i k res (count + 1)
+    | head :: tail ->
+        if i <= count && count <= k then aux tail (res @ [ head ]) (count + 1)
+        else aux tail res (count + 1)
   in
-  aux lst i k [] 0
+  aux lst [] 0
 
 (* Problem 19 - Rotate a List N Places to the Left *)
 let rotate (lst : 'a list) (n : int) : 'a list =
   let rec aux (lst : 'a list) (i : int) =
     if i >= n then lst
-    else match lst with [] -> [] | x :: rest -> aux (rest @ [ x ]) (i + 1)
+    else
+      match lst with [] -> [] | head :: tail -> aux (tail @ [ head ]) (i + 1)
   in
   aux lst 0
 
@@ -190,8 +193,8 @@ let remove_at (k : int) (lst : 'a list) : 'a list =
   let rec aux (i : int) (lst : 'a list) (res : 'a list) : 'a list =
     match lst with
     | [] -> res
-    | x :: rest ->
-        if i = k then aux (i + 1) rest res else aux (i + 1) rest (res @ [ x ])
+    | head :: tail ->
+        if i = k then aux (i + 1) tail res else aux (i + 1) tail (res @ [ head ])
   in
   aux 0 lst []
 
@@ -200,8 +203,8 @@ let insert_at (e : 'a) (n : int) (lst : 'a list) : 'a list =
   let rec aux (i : int) (lst : 'a list) (res : 'a list) =
     match lst with
     | [] -> if i <= n then res @ [ e ] else res
-    | x :: rest ->
-        let res = if i = n then res @ [ e ] @ [ x ] else res @ [ x ] in
-        aux (i + 1) rest res
+    | head :: tail ->
+        let res = if i = n then res @ [ e ] @ [ head ] else res @ [ head ] in
+        aux (i + 1) tail res
   in
   aux 0 lst []
